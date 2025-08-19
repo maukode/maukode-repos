@@ -1,0 +1,24 @@
+{
+  "name": "@maukode/headless-media",
+  "private": false,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/headless-webcam.umd.js",
+  "module": "./dist/headless-webcam.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/headless-webcam.es.js",
+      "require": "./dist/headless-webcam.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  }
+}
