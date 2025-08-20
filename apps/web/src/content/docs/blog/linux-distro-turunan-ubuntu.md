@@ -3,10 +3,10 @@ title: Linux Distro Turunan Ubuntu
 date: 2024-07-28
 ---
 
-## Linux Distro Turunan Ubuntu: Pilihan Alternatif yang Lebih Bertenaga 
+Linux Distro Turunan Ubuntu: Pilihan Alternatif yang Lebih Bertenaga 
 
 Ubuntu, sistem operasi Linux yang populer dan ramah pengguna, telah menjadi dasar bagi banyak distro lain. 
-<!-- truncate -->
+<!-- excerpt -->
 Distro turunan Ubuntu, atau *Ubuntu-based distros*, menawarkan berbagai fitur dan keunggulan, memberikan pilihan yang lebih luas bagi pengguna Linux. 
 
 **Mengapa Memilih Distro Turunan Ubuntu?**

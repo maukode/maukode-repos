@@ -3,10 +3,10 @@ title: Distro Linux Turunan Arch
 date: 2024-07-24
 ---
 
-## Menjelajahi Dunia Arch Linux: Distro Turunannya yang Menawan
+Menjelajahi Dunia Arch Linux: Distro Turunannya yang Menawan
 
 Bagi para penggemar Linux yang haus akan fleksibilitas dan kontrol penuh, [Arch Linux](https://archlinux.org/) merupakan pilihan yang ideal. 
-<!-- truncate -->
+<!-- excerpt -->
 Namun, proses instalasi Arch Linux yang rumit terkadang menjadi penghalang bagi pengguna pemula. Tenang, masih ada banyak opsi menarik lainnya: distro Linux turunan Arch!
 
 Distro turunan Arch, dikenal dengan sebutan Arch-based, menawarkan pengalaman Arch Linux yang ramah pengguna. 

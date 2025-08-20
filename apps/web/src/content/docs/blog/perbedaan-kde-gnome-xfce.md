@@ -3,11 +3,11 @@ title: Perbedaan KDE, GNOME, XFCE
 date: 2024-07-20
 ---
 
-## Perbedaan KDE, GNOME, dan XFCE: Mana yang Cocok untuk Anda?
+Perbedaan KDE, GNOME, dan XFCE: Mana yang Cocok untuk Anda?
 
 Bagi pengguna Linux, memilih lingkungan desktop yang tepat bisa menjadi hal yang membingungkan.  KDE, GNOME, dan XFCE adalah tiga lingkungan desktop yang populer, masing-masing menawarkan fitur dan pendekatan yang berbeda. Artikel ini akan membahas perbedaan utama dari ketiga lingkungan desktop ini,  membantu Anda menentukan mana yang paling cocok untuk kebutuhan Anda.
 
-<!-- truncate -->
+<!-- excerpt -->
 
 ### KDE: Fitur Kaya dan Personal  
 

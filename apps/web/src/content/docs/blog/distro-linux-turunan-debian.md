@@ -3,10 +3,10 @@ title: Distro Linux Turunan Debian
 date: 2024-07-26
 ---
 
-## Distro Linux Turunan Debian: Pilihan Terbaik untuk Stabilitas dan Keamanan
+Distro Linux Turunan Debian: Pilihan Terbaik untuk Stabilitas dan Keamanan
 
 [Debian](https://maukode.com/blog/mengapa-debian-adalah-distro-linux-yang-penting), sistem operasi berbasis Linux yang terkenal dengan stabilitasnya, telah melahirkan banyak distribusi (distro) Linux yang populer. 
-<!-- truncate -->
+<!-- excerpt -->
 Turunan Debian, atau "Debian-based" distro, mewarisi nilai-nilai inti Debian seperti stabilitas, keamanan, dan ketersediaan perangkat lunak yang luas. 
 
 Jika Anda mencari distro Linux yang handal, mudah digunakan, dan menawarkan berbagai pilihan perangkat lunak, maka distro turunan Debian adalah pilihan yang tepat. Berikut beberapa contoh distro turunan Debian yang populer:

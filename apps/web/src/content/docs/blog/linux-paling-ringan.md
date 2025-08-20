@@ -3,10 +3,10 @@ title: Linux Paling Ringan
 date: 2024-07-12
 ---
 
-## Linux Paling Ringan: Optimalkan Performa Komputer Anda
+Linux Paling Ringan: Optimalkan Performa Komputer Anda
 
 Bagi pengguna komputer, kinerja adalah hal utama.  Komputer yang lambat bisa membuat frustasi dan menghambat produktivitas.  Jika Anda mencari sistem operasi yang ringan dan cepat, Linux adalah pilihan yang tepat.  
-<!-- truncate -->
+<!-- excerpt -->
 
 <!-- ![Linux PC](./linux.jpg) -->
 
