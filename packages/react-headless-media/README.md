@@ -1,0 +1,1 @@
+`@maukode/react-headless-media` is React Hooks for `@maukode/headless-media` library that provides core functionality for taking photo and recording media.

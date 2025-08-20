@@ -1,0 +1,1 @@
+`@maukode/headless-media` is library that provides core functionality for taking photo and recording media.
