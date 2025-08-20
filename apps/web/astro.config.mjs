@@ -1,16 +1,16 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import Icons from 'unplugin-icons/vite';
 import starlightSidebarTopics from 'starlight-sidebar-topics';
 import starlightBlog from 'starlight-blog'
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://maukode.com',
 	integrations: [
 		starlight({
 			title: 'MauKode',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/maukode/maukode-repos' }],
 			plugins: [
 				starlightSidebarTopics(
 					[
@@ -44,10 +44,5 @@ export default defineConfig({
 				alt: 'Maukode Logo'
 			}
 		}),
-	],
-	vite: {
-		plugins: [
-			Icons({ compiler: 'astro' })
-		]
-	}
+	]
 });
