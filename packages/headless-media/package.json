@@ -1,6 +1,6 @@
 {
   "name": "@maukode/headless-media",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": false,
   "description": "Headless Media library that provides core functionality for taking photo and recording media.",
   "type": "module",
