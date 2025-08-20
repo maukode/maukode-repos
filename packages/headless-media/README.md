@@ -1,1 +1,89 @@
-`@maukode/headless-media` is library that provides core functionality for taking photo and recording media.
+**A lightweight, composable, and tree-shakeable library for handling media capture in your web applications. You control the UI, we handle the logic.**
+
+`@maukode/headless-media` gives you the power to take photos, record video, and capture audio without imposing any specific design. It's built around a core media factory and composable "feature" enhancers, giving you maximum flexibility.
+
+## Core Principles
+
+- **Headless by Design**: The library provides no UI components. You have complete freedom to build and style your media controls.
+
+- **Composition over Inheritance**: Start with a base `createMedia` object and layer on functionality like photo capture (`withPhoto`) or recording (`withRecorder`). This approach keeps your code declarative and easy to understand.
+
+- **Tree-Shakeable**: Only the code you use is included in your final bundle. If you only need to take photos, the recorder logic won't bloat your app.
+
+## Getting Started
+`@maukode/headless-media` is a vanilla javascript library, so it is framework-agnostic. That means you can use this library as it is (vanilla) or in any Javascript framework you like.
+
+## Install
+```sh
+npm i @maukode/headless-media
+```
+
+## Core API
+`createMedia(options)`
+This is the heart of the library. It creates a base media instance that manages the underlying `MediaStream`.
+
+**Options:** You can pass standard `MediaStreamConstraints` to the options object.
+
+- `createMedia({ audio: true, video: false })` - For an audio-only stream.
+
+- `createMedia({ video: true, audio: false })` - For a video-only stream (default).
+
+- `createMedia({ audio: true, video: true })` - For a stream with both audio and video.
+
+## Features
+You can add features to a `createMedia` instance by wrapping it with enhancer functions.
+
+### 📸 Taking Photos (`withPhoto`)
+The `withPhoto` enhancer adds photo-capturing capabilities.
+
+```ts
+import { createMedia, withPhoto } from 'headless-media';
+const photoTaker = withPhoto(createMedia());
+```
+
+**Methods Added:**
+
+- `.takePhoto()`: An async function that captures a frame from the video stream and returns it as a Blob.
+
+### 🎥 Recording Media (`withRecorder`)
+The `withRecorder` enhancer adds recording capabilities for audio, video, or both.
+
+```ts
+import { createMedia, withRecorder } from 'headless-media';
+
+// For video + audio recording
+const mediaRecorder = withRecorder(createMedia({ audio: true, video: true }));
+```
+
+**State & Methods Added:**
+
+- `.isRecording`: A boolean state indicating if recording is active.
+
+- `.startRecording()`: Starts capturing the media stream.
+
+- `.stopRecording()`: Stops the capture and returns the recorded media as a Blob.
+
+## Utilities
+`listVideoInputDevices()` & `listAudioInputDevices()`
+
+These are async utility functions that return a promise resolving to an array of available `MediaDeviceInfo` objects. You can use these to build a device selector UI for your users.
+
+```ts
+import { listVideoInputDevices } from 'headless-media';
+
+async function logVideoDevices() {
+  try {
+    const devices = await listVideoInputDevices();
+    console.log(devices);
+    // [ { deviceId: "...", kind: "videoinput", label: "FaceTime HD Camera", groupId: "..." }, ... ]
+  } catch (e) {
+    console.error("Could not list devices:", e);
+  }
+}
+```
+
+## TypeScript
+
+The library is written in TypeScript and exports all relevant types for a better development experience.
+
+`CoreMediaState`, `MediaStartOptions`, `CoreMedia`, `PhotoFeature`, `RecorderFeature`, `VolumeMeterFeature`
