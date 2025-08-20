@@ -1,6 +1,6 @@
 {
   "name": "@maukode/react-headless-media",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Hooks for @maukode/headless-media library that provides core functionality for taking photo and recording media.",
   "types": "./dist/index.d.ts",
   "main": "./dist/react-headless-media.umd.js",
