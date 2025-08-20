@@ -1,5 +1,11 @@
 # @maukode/headless-media
 
+## 1.0.2
+
+### Patch Changes
+
+- update README.md
+
 ## 1.0.1
 
 ### Patch Changes
