@@ -1,0 +1,172 @@
+---
+title: React Hooks
+description: Introduction to @maukode/react-headless-media library
+---
+import { Tabs, TabItem, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+
+## Installation
+To simplify integration with React applications, we provides a set of hooks that manage state, lifecycle, and references for you.
+
+<Tabs>
+<TabItem label="npm">
+```sh
+npm install @maukode/react-headless-media
+```
+</TabItem>
+<TabItem label="yarn">
+```sh
+yarn add @maukode/react-headless-media
+```
+</TabItem>
+<TabItem label="pnpm">
+```sh
+pnpm add @maukode/react-headless-media
+```
+</TabItem>
+</Tabs>
+
+## API and Usage Example
+
+### `useMediaDevices()`
+
+This hook provides an easy way to get a list of the user's available audio and video devices. It also handles the loading state while permissions are being requested and devices are being enumerated.
+
+Returns:
+
+- isLoading: `boolean`: `true` while fetching the list of devices.
+
+- video: `MediaDeviceInfo[]`: An array of available video input devices.
+
+- audio: `MediaDeviceInfo[]`: An array of available audio input devices.
+
+#### Example: Building a Device Selector
+
+```tsx
+import { useMediaDevices } from '@maukode/react-headless-media';
+
+function DeviceSelector({ onSelectDevice }) {
+  const { video, isLoading } = useMediaDevices();
+
+  if (isLoading) {
+    return <p>Loading devices...</p>;
+  }
+
+  return (
+    <select onChange={(e) => onSelectDevice(e.target.value)}>
+      {video.map((device) => (
+        <option key={device.deviceId} value={device.deviceId}>
+          {device.label}
+        </option>
+      ))}
+    </select>
+  );
+}
+```
+
+### `useMedia(options)`
+This is the main hook for controlling the media stream and capturing content. It composes all the core logic into a single, easy-to-use hook.
+
+**Options:**
+
+The options object lets you enable the features you need, ensuring your final bundle remains lean.
+
+- `withPhoto?`: boolean: Set to true to enable the `.takePhoto()` method.
+
+- `withRecorder?`: boolean: Set to true to enable the recording methods.
+
+**Returns:**
+
+- videoRef: `RefObject<HTMLVideoElement>`: Attach this ref to your `<video>` element.
+
+- isPlaying: boolean: true if the camera stream is currently active.
+
+- recordingState: `RecordingState`: The current state of the recorder (e.g., 'idle', 'recording', 'stopped').
+
+- start(options): A function to start the media stream. You can pass `{ deviceId }` to use a specific device.
+
+- stop(): A function to stop the media stream.
+
+- takePhoto(): Takes a photo and returns its object URL (string). Returns undefined if the feature is not enabled or if the stream isn't active.
+
+- startRecording(): Starts a recording.
+
+- stopRecording(): Stops the recording and returns a Promise that resolves with the recorded Blob.
+
+#### Full Example: A Media Component
+
+This example combines `useMediaDevices` and `useMedia` to create a full-featured component that can select a camera, take a photo, and record a video clip.
+
+```tsx
+import { useMedia, useMediaDevices } from '@maukode/react-headless-media';
+import { useState } from 'react';
+
+function MediaComponent() {
+  const [selectedDeviceId, setSelectedDeviceId] = useState('');
+  const [photo, setPhoto] = useState('');
+  const [videoClip, setVideoClip] = useState('');
+
+  // 1. Get the list of devices
+  const { video: videoDevices } = useMediaDevices();
+
+  // 2. Initialize the media hook with all features
+  const {
+    videoRef,
+    isPlaying,
+    recordingState,
+    start,
+    stop,
+    takePhoto,
+    startRecording,
+    stopRecording,
+  } = useMedia({ withPhoto: true, withRecorder: true });
+
+  // 3. Start the stream when a device is selected
+  const handleStart = () => {
+    if (selectedDeviceId) {
+      start({ video: { deviceId: { exact: selectedDeviceId } } });
+    }
+  };
+
+  const handleTakePhoto = () => {
+    const photoUrl = takePhoto();
+    if (photoUrl) setPhoto(photoUrl);
+  };
+
+  const handleStopRecording = async () => {
+    const recording = await stopRecording();
+    if (recording) setVideoClip(URL.createObjectURL(recording));
+  };
+
+  return (
+    <div>
+      <h3>Controls</h3>
+      <select onChange={(e) => setSelectedDeviceId(e.target.value)}>
+        <option>--Select a camera--</option>
+        {videoDevices.map((device) => (
+          <option key={device.deviceId} value={device.deviceId}>
+            {device.label}
+          </option>
+        ))}
+      </select>
+      <button onClick={handleStart} disabled={!selectedDeviceId || isPlaying}>Start Camera</button>
+      <button onClick={stop} disabled={!isPlaying}>Stop Camera</button>
+
+      <hr />
+      
+      <h3>Capture</h3>
+      <video ref={videoRef} autoPlay muted playsInline style={{ width: 320, height: 240, background: '#333' }}/>
+      
+      <div>
+        <button onClick={handleTakePhoto} disabled={!isPlaying}>Take Photo</button>
+        <button onClick={startRecording} disabled={!isPlaying || recordingState === 'recording'}>Start Recording</button>
+        <button onClick={handleStopRecording} disabled={recordingState !== 'recording'}>Stop Recording</button>
+        <span>Status: {recordingState}</span>
+      </div>
+
+      {photo && <div><h4>Photo Preview:</h4><img src={photo} width="320" alt="Captured" /></div>}
+      {videoClip && <div><h4>Video Preview:</h4><video src={videoClip} width="320" controls /></div>}
+    </div>
+  );
+}
+```
