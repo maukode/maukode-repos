@@ -1,6 +1,9 @@
 ---
 title: Distro Linux Turunan Arch
 date: 2024-07-24
+tags:
+    - linux
+    - arch
 ---
 
 Menjelajahi Dunia Arch Linux: Distro Turunannya yang Menawan

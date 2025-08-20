@@ -1,6 +1,11 @@
 ---
 title: Perbedaan KDE, GNOME, XFCE
 date: 2024-07-20
+tags:
+    - linux
+    - kde
+    - gnome
+    - xfce
 ---
 
 Perbedaan KDE, GNOME, dan XFCE: Mana yang Cocok untuk Anda?

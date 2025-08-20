@@ -1,6 +1,9 @@
 ---
 title: Distro Linux Turunan Debian
 date: 2024-07-26
+tags:
+    - linux
+    - debian
 ---
 
 Distro Linux Turunan Debian: Pilihan Terbaik untuk Stabilitas dan Keamanan

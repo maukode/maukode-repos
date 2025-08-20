@@ -1,6 +1,8 @@
 ---
 title: Linux Paling Ringan
 date: 2024-07-12
+tags:
+    - linux
 ---
 
 Linux Paling Ringan: Optimalkan Performa Komputer Anda

@@ -33,10 +33,15 @@ export default defineConfig({
 						}
 					],
 					{
-						exclude: ['/blog', '/blog/*']
+						exclude: ['/blog', '/blog/*', '/blog/tags/*']
 					}
 				),
-				starlightBlog()
+				starlightBlog({
+					metrics: {
+						readingTime: true,
+						words: 'total'
+					}
+				})
 			],
 			favicon: '/favicon.ico',
 			logo: {

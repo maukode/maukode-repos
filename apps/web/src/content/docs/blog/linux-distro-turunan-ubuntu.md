@@ -1,6 +1,9 @@
 ---
 title: Linux Distro Turunan Ubuntu
 date: 2024-07-28
+tags:
+    - linux
+    - ubuntu
 ---
 
 Linux Distro Turunan Ubuntu: Pilihan Alternatif yang Lebih Bertenaga 
