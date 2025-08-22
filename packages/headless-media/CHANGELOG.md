@@ -1,5 +1,11 @@
 # @maukode/headless-media
 
+## 1.0.3
+
+### Patch Changes
+
+- fixing package name
+
 ## 1.0.2
 
 ### Patch Changes

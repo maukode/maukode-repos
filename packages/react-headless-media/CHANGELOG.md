@@ -1,5 +1,12 @@
 # @maukode/react-headless-media
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @maukode/headless-media@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes
