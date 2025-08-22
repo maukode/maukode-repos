@@ -15,9 +15,9 @@ export default defineConfig({
     lib: {
       // The entry point for your library's core logic
       entry: resolve(__dirname, 'src/lib/index.ts'),
-      name: 'HeadlessWebcam', // A global variable name for UMD builds
+      name: 'HeadlessMedia', // A global variable name for UMD builds
       // The output file name formats (e.g., headless-webcam.es.js)
-      fileName: (format) => `headless-webcam.${format}.js` 
+      fileName: (format) => `headless-media.${format}.js`
     },
     // You can add rollup options here if needed later
     rollupOptions: {

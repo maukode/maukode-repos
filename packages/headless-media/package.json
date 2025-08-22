@@ -4,14 +4,14 @@
   "private": false,
   "description": "Headless Media library that provides core functionality for taking photo and recording media.",
   "type": "module",
-  "main": "./dist/headless-webcam.umd.js",
-  "module": "./dist/headless-webcam.es.js",
+  "main": "./dist/headless-media.umd.js",
+  "module": "./dist/headless-media.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/headless-webcam.es.js",
-      "require": "./dist/headless-webcam.umd.js"
+      "import": "./dist/headless-media.es.js",
+      "require": "./dist/headless-media.umd.js"
     }
   },
   "files": [
