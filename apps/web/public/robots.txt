@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://maukode.com/sitemap-index.xml
