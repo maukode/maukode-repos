@@ -1,5 +1,27 @@
 # @maukode/react-headless-media
 
+## 1.0.7
+
+### Patch Changes
+
+- fixing import error and useMedia hook
+- Updated dependencies
+  - @maukode/headless-media@1.0.7
+
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies
+  - @maukode/headless-media@1.0.6
+
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @maukode/headless-media@1.0.5
+
 ## 1.0.4
 
 ### Patch Changes
