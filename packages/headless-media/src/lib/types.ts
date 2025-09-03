@@ -30,10 +30,40 @@ export interface PhotoFeature {
   takePhoto: (format?: 'image/png' | 'image/jpeg') => string; // Returns a base64 Data URL
 }
 
-// The API for the recorder feature
+/**
+ * Defines the features added by the recorder decorator.
+ */
 export interface RecorderFeature {
+  /**
+   * Starts recording the media stream.
+   * @param {MediaRecorderOptions} [options] - Optional configuration for the MediaRecorder.
+   * @throws {Error} if the stream is not available or recording is already active.
+   */
   startRecording: (options?: MediaRecorderOptions) => void;
+
+  /**
+   * Stops the active recording.
+   * @returns {Promise<Blob>} A promise that resolves with the recorded media as a Blob.
+   * @throws {Error} if recording has not been started.
+   */
   stopRecording: () => Promise<Blob>;
+
+  /**
+   * Pauses the active recording.
+   * @throws {Error} if the recorder is not in the 'recording' state.
+   */
+  pauseRecording: () => void;
+
+  /**
+   * Resumes a paused recording.
+   * @throws {Error} if the recorder is not in the 'paused' state.
+   */
+  resumeRecording: () => void;
+
+  /**
+   * Gets the current state of the MediaRecorder.
+   * @returns {'inactive' | 'recording' | 'paused'} The current recording state.
+   */
   readonly recordingState: RecordingState;
 }
 
