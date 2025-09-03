@@ -1,4 +1,4 @@
-import type { CoreMedia, RecorderFeature } from "../types";
+import type { CoreMedia, RecorderFeature, StartRecordingOptions } from "../types";
 
 // Assuming types are in a separate file or defined above.
 // import type { CoreMedia, RecorderFeature } from './types';
@@ -15,21 +15,34 @@ export function withRecorder<T extends CoreMedia>(instance: T): T & RecorderFeat
   let mediaRecorder: MediaRecorder | null = null;
   let recordedChunks: Blob[] = [];
 
-  const startRecording = (options?: MediaRecorderOptions): void => {
-    if (!internalState.stream) {
-      throw new Error('Stream not available to start recording.');
-    }
-    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-      throw new Error('Recording is already in progress.');
-    }
+  // MODIFIED: startRecording now accepts the new options object
+  const startRecording = (options?: StartRecordingOptions): void => {
+    if (!internalState.stream) throw new Error('Stream not available...');
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') throw new Error('Recording in progress...');
 
-    // Clear any previously recorded chunks
     recordedChunks = [];
+    mediaRecorder = new MediaRecorder(internalState.stream, options?.recorderOptions);
 
-    mediaRecorder = new MediaRecorder(internalState.stream, options);
+    // *** THE KEY ADDITION ***
+    // Wire up event listeners to the state change callback
+    const notifyStateChange = (state: RecordingState) => {
+      if (options?.onStateChange) {
+        options.onStateChange(state);
+      }
+    };
 
-    // *** FIX: This is the crucial part that was missing. ***
-    // Listen for data chunks and push them to the array.
+    mediaRecorder.onstart = () => notifyStateChange('recording');
+    mediaRecorder.onpause = () => notifyStateChange('paused');
+    mediaRecorder.onresume = () => notifyStateChange('recording'); // Resuming returns to 'recording'
+    mediaRecorder.onstop = () => {
+      notifyStateChange('inactive');
+      // The rest of the original onstop logic (creating the blob) remains in stopRecording()
+    };
+    mediaRecorder.onerror = (event) => {
+      console.error('MediaRecorder error:', event);
+      notifyStateChange('inactive');
+    };
+
     mediaRecorder.ondataavailable = (event: BlobEvent) => {
       if (event.data.size > 0) {
         recordedChunks.push(event.data);

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { createMedia, CoreMedia, MediaStartOptions, listVideoInputDevices, listAudioInputDevices, PhotoFeature, RecorderFeature, withPhoto, withRecorder } from "@maukode/headless-media";
+import { createMedia, CoreMedia, MediaStartOptions, listVideoInputDevices, listAudioInputDevices, PhotoFeature, RecorderFeature, withPhoto, withRecorder, StartRecordingOptions } from "@maukode/headless-media";
 
 // ====================================================================
 // ====================================================================
@@ -32,110 +32,154 @@ export function useMediaDevices() {
   return { ...devices, isLoading };
 }
 
-
 // ====================================================================
-// HOOK 2: useMedia
-// The main hook to manage the media instance and its features.
+// HOOK 2: useMedia (Refactored)
 // ====================================================================
 
-// Define the options for the hook, allowing users to enable features
 interface UseMediaOptions {
   withPhoto?: boolean;
   withRecorder?: boolean;
 }
 
-// Define a status object to make state updates easier
+// A more comprehensive status object
 interface MediaStatus {
-    isPlaying: boolean;
-    recordingState: RecordingState;
+  isPlaying: boolean;
+  recordingState: RecordingState;
+  error: Error | null;
 }
 
-export function useMedia(options: UseMediaOptions = {}) {
+// Conditionally add features to the type for better IntelliSense
+type MediaInstance<T extends UseMediaOptions> = CoreMedia &
+  (T['withPhoto'] extends true ? PhotoFeature : {}) &
+  (T['withRecorder'] extends true ? RecorderFeature : {});
+
+export function useMedia<T extends UseMediaOptions>(options: T) {
   const { withPhoto: enablePhoto, withRecorder: enableRecorder } = options;
 
-  // Ref to hold the <video> element
   const videoRef = useRef<HTMLVideoElement>(null);
-  
-  // Ref to hold the media library instance. We use a ref to avoid
-  // re-creating the instance on every render.
   const mediaInstanceRef = useRef<CoreMedia & Partial<PhotoFeature & RecorderFeature> | null>(null);
 
-  // Reactive state for the component to re-render when status changes
   const [status, setStatus] = useState<MediaStatus>({
     isPlaying: false,
     recordingState: 'inactive',
+    error: null,
   });
 
   // Effect to create and clean up the media instance
   useEffect(() => {
-    // This effect runs once on mount to create the instance
     if (videoRef.current) {
       let instance: CoreMedia & Partial<PhotoFeature & RecorderFeature> = createMedia(videoRef.current);
-      
-      // Conditionally compose features based on options.
-      // This is what enables tree-shaking! If `enablePhoto` is false,
-      // the `withPhoto` module can be shaken from the final bundle.
+
       if (enablePhoto) {
         instance = withPhoto(instance);
       }
       if (enableRecorder) {
         instance = withRecorder(instance);
       }
-      mediaInstanceRef.current = instance;
+      mediaInstanceRef.current = instance as MediaInstance<T>;
     }
 
-    // Return a cleanup function to be called on unmount
     return () => {
       mediaInstanceRef.current?.stop();
+      mediaInstanceRef.current = null;
     };
-  }, [enablePhoto, enableRecorder]); // Re-run if features change
-
-  // Memoized function to update the reactive status state
-  const updateStatus = useCallback(() => {
-    if (mediaInstanceRef.current) {
-        setStatus({
-            isPlaying: mediaInstanceRef.current.isPlaying,
-            recordingState: mediaInstanceRef.current.recordingState || 'inactive',
-        });
-    }
-  }, []);
+  }, [enablePhoto, enableRecorder]);
 
   // --- Control Functions ---
-  // We wrap all control functions in `useCallback` to ensure they have a
-  // stable identity across re-renders, preventing unnecessary child re-renders.
+
+  const handleError = useCallback((err: unknown) => {
+    const error = err instanceof Error ? err : new Error(String(err));
+    console.error("Media Hook Error:", error);
+    setStatus(s => ({ ...s, error }));
+  }, []);
 
   const start = useCallback(async (startOptions: MediaStartOptions) => {
-    await mediaInstanceRef.current?.start(startOptions);
-    updateStatus();
-  }, [updateStatus]);
+    try {
+      await mediaInstanceRef.current?.start(startOptions);
+      setStatus(s => ({ ...s, isPlaying: true, error: null }));
+    } catch (err) {
+      handleError(err);
+    }
+  }, [handleError]);
 
   const stop = useCallback(() => {
     mediaInstanceRef.current?.stop();
-    updateStatus();
-  }, [updateStatus]);
-
-  const takePhoto = useCallback(() => {
-    return mediaInstanceRef.current?.takePhoto?.();
+    setStatus(s => ({ ...s, isPlaying: false }));
   }, []);
 
-  const startRecording = useCallback(() => {
-    mediaInstanceRef.current?.startRecording?.();
-    updateStatus();
-  }, [updateStatus]);
+  // --- Photo Feature ---
+  const takePhoto = useCallback(async () => {
+    // Ensure the function exists before calling
+    if (mediaInstanceRef.current?.takePhoto) {
+      try {
+        return await mediaInstanceRef.current.takePhoto();
+      } catch (err) {
+        handleError(err);
+      }
+    }
+    return undefined;
+  }, [handleError]);
+
+  // --- Recorder Features ---
+  const startRecording = useCallback((recorderOptions?: MediaRecorderOptions) => {
+    if (mediaInstanceRef.current?.startRecording) {
+      try {
+        const optionsWithCallback: StartRecordingOptions = {
+          recorderOptions,
+          // THIS IS THE FIX: We subscribe to the library's state changes
+          onStateChange: (newState: RecordingState) => {
+            setStatus(s => ({ ...s, recordingState: newState, error: null }));
+          },
+        };
+        mediaInstanceRef.current.startRecording(optionsWithCallback);
+      } catch (err) {
+        handleError(err);
+      }
+    }
+  }, [handleError]);
+
+  const pauseRecording = useCallback(() => {
+    try {
+      mediaInstanceRef.current?.pauseRecording?.();
+    } catch (err) {
+      handleError(err);
+    }
+  }, [handleError]);
+
+  const resumeRecording = useCallback(() => {
+    try {
+      mediaInstanceRef.current?.resumeRecording?.();
+    } catch (err) {
+      handleError(err);
+    }
+  }, [handleError]);
 
   const stopRecording = useCallback(async () => {
-    const blob = await mediaInstanceRef.current?.stopRecording?.();
-    updateStatus();
-    return blob;
-  }, [updateStatus]);
+    if (mediaInstanceRef.current?.stopRecording) {
+      try {
+        // The onStateChange handler will automatically set state to 'inactive'
+        const blob = await mediaInstanceRef.current.stopRecording();
+        return blob;
+      } catch (err) {
+        handleError(err);
+      }
+    }
+    return undefined;
+  }, [handleError]);
+
 
   return {
     videoRef,
     ...status,
     start,
     stop,
-    takePhoto,
-    startRecording,
-    stopRecording,
+    // Conditionally return functions based on options for type safety
+    ...(enablePhoto && { takePhoto }),
+    ...(enableRecorder && {
+      startRecording,
+      stopRecording,
+      pauseRecording,
+      resumeRecording
+    }),
   };
 }

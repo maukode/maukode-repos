@@ -1,12 +1,13 @@
-export {createMedia} from './core';
-export {withPhoto} from './features/photo';
-export {withRecorder} from './features/recorder';
+export { createMedia } from './core';
+export { withPhoto } from './features/photo';
+export { withRecorder } from './features/recorder';
 export type {
-    CoreMediaState, 
+    CoreMediaState,
     MediaStartOptions,
     CoreMedia,
     PhotoFeature,
     RecorderFeature,
-    VolumeMeterFeature
+    VolumeMeterFeature,
+    StartRecordingOptions
 } from './types';
-export {listAudioInputDevices, listVideoInputDevices} from './utils/device';
+export { listAudioInputDevices, listVideoInputDevices } from './utils/device';

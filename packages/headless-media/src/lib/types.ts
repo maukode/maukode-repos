@@ -30,6 +30,11 @@ export interface PhotoFeature {
   takePhoto: (format?: 'image/png' | 'image/jpeg') => string; // Returns a base64 Data URL
 }
 
+export interface StartRecordingOptions {
+  recorderOptions?: MediaRecorderOptions;
+  onStateChange?: (state: RecordingState) => void;
+}
+
 /**
  * Defines the features added by the recorder decorator.
  */
@@ -39,7 +44,7 @@ export interface RecorderFeature {
    * @param {MediaRecorderOptions} [options] - Optional configuration for the MediaRecorder.
    * @throws {Error} if the stream is not available or recording is already active.
    */
-  startRecording: (options?: MediaRecorderOptions) => void;
+  startRecording: (options?: StartRecordingOptions) => void;
 
   /**
    * Stops the active recording.
