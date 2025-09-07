@@ -1,13 +1,85 @@
 ---
-title: Welcome to MauKode
-description: Get started building your docs site with Starlight.
+# Frontmatter configuration for the hero section
+title: MauKode | AI SaaS, Open Source, and Enterprise Solutions
+description: Discover MauKode. We build innovative AI SaaS like MauKode AI, maintain powerful open-source libraries, and provide expert enterprise software solutions.
 template: splash
 hero:
-  tagline: Helping People (and AI) to code
+  title: MauKode
+  tagline: We build intelligent software solutions—from powerful open-source libraries to enterprise-grade AI.
   image:
     file: ../../assets/maukode-logo.svg
   actions:
-    - text: Documentation
-      link: /headless-media/getting-started/introduction/
-      icon: right-arrow
+    - text: Discover MauKode AI
+      link: https://ai.maukode.com
+      icon: rocket
+      variant: primary
+    - text: Explore Our Open Source
+      link: /open-source
+      icon: external
+      variant: secondary
 ---
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## Our Core Offerings
+
+We focus on three key areas to deliver exceptional value to our users and clients.
+
+<CardGrid stagger>
+	<Card title="AI-Powered SaaS" icon="puzzle">
+		Our flagship product, **MauKode AI**, helps you organize, manage, and supercharge your AI conversations and workflows.
+	</Card>
+	<Card title="Open Source Software" icon="github">
+		We create and maintain robust, developer-friendly libraries for the modern web, empowering builders around the world.
+	</Card>
+	<Card title="Enterprise Services" icon="briefcase">
+		Leverage our expertise to build custom software, integrate complex systems, and scale your business with reliable solutions.
+	</Card>
+</CardGrid>
+
+
+## Product Spotlight: MauKode AI
+
+<CardGrid>
+<LinkCard
+  title="MauKode AI"
+  description="Organize Your AI Conversation. Finally."
+  href="https://ai.maukode.com"
+  target="_blank"
+/>
+<LinkCard
+  title="Documentation of MauKode AI"
+  description="Organize Your AI Conversation. Finally."
+  href="https://ai.maukode.com"
+  target="_blank"
+/>
+</CardGrid>
+
+MauKode AI is our premier Software-as-a-Service offering designed to bring order and efficiency to your interactions with artificial intelligence. Stop losing valuable insights in endless chat logs and start building a structured, searchable knowledge base from your conversations.
+
+
+## Featured Open Source Libraries
+
+Our commitment to the open-source community is at the heart of what we do. Here are some of our popular packages available on NPM.
+
+<CardGrid>
+	<Card title="@maukode/headless-media" icon="microphone">
+		A powerful, framework-agnostic library for recording audio, video, and screen content directly in the browser.
+	</Card>
+	<Card title="@maukode/react-headless-media" icon="react">
+		The official React wrapper for Headless Media. Seamlessly integrate media recording into your React apps with intuitive hooks.
+	</Card>
+	<Card title="@maukode/siesvi" icon="table">
+		A high-performance, stream-based CSV parser and stringifier for Node.js, built for handling large datasets with minimal memory footprint.
+	</Card>
+</CardGrid>
+
+
+## Ready to Build Something Great?
+
+Whether you're looking to use our products, contribute to our open-source projects, or partner with us for an enterprise solution, we'd love to connect.
+
+<div class="expressive-code text-center" style={{ padding: '1.5rem 0' }}>
+    <a class="sl-button sl-button--primary" href="/contact/">
+        Get In Touch
+    </a>
+</div>

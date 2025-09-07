@@ -12,11 +12,14 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.35.2",
+    "@astrojs/starlight-tailwind": "^4.0.1",
     "@iconify-json/skill-icons": "^1.2.3",
+    "@tailwindcss/vite": "^4.1.13",
     "astro": "^5.6.1",
     "sharp": "^0.34.2",
     "starlight-blog": "^0.24.1",
     "starlight-sidebar-topics": "^0.6.0",
+    "tailwindcss": "^4.1.13",
     "unplugin-icons": "^22.2.0"
   }
 }

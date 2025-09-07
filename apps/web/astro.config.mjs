@@ -4,12 +4,19 @@ import starlight from '@astrojs/starlight';
 import starlightSidebarTopics from 'starlight-sidebar-topics';
 import starlightBlog from 'starlight-blog'
 
+import tailwindcss from '@tailwindcss/vite';
+
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://maukode.com',
+
 	integrations: [
 		starlight({
 			title: 'MauKode',
+			customCss: [
+				// Path to your Tailwind base styles:
+				'./src/styles/global.css',
+			],
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/maukode/maukode-repos' }],
 			plugins: [
 				starlightSidebarTopics(
@@ -33,7 +40,7 @@ export default defineConfig({
 						}
 					],
 					{
-						exclude: ['/blog', '/blog/*', '/blog/tags/*']
+						exclude: ['/blog', '/blog/*', '/blog/tags/*', '/contact']
 					}
 				),
 				starlightBlog({
@@ -49,5 +56,9 @@ export default defineConfig({
 				alt: 'Maukode Logo'
 			}
 		}),
-	]
+	],
+
+	vite: {
+		plugins: [tailwindcss()]
+	}
 });

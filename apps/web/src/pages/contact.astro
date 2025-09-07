@@ -1,0 +1,90 @@
+---
+// Import Starlight components to be used on the page.
+import { Card, CardGrid } from "@astrojs/starlight/components";
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+
+// Define the frontmatter for this page.
+const frontmatter = {
+  title: "Contact Us",
+  description:
+    "Get in touch with the MauKode team. We'd love to hear from you whether you have a business inquiry, a question about our open-source software, or just want to connect.",
+  template: "splash",
+  hero: {
+    title: "",
+  },
+};
+---
+
+<StarlightPage frontmatter={frontmatter}>
+  <div class="max-w-5xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2
+        class="text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl"
+      >
+        Let's Connect
+      </h2>
+      <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-400">
+        We're always excited to hear about new projects, answer questions, and
+        engage with our community. Please choose the most relevant contact
+        option below.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <CardGrid>
+        <Card title="General & Business Inquiries" icon="email">
+          For questions about our enterprise services or partnerships, please
+          reach out to our team.
+          <br /><br />
+          <a
+            href="mailto:hello@maukode.com"
+            class="text-sky-600 dark:text-sky-400 font-semibold hover:underline"
+          >
+            hello@maukode.com
+          </a>
+        </Card>
+        <Card title="Product Support" icon="puzzle">
+          Need help with MauKode AI or have a technical question? Our support
+          team is here to assist you.
+          <br /><br />
+          <a
+            href="mailto:support@maukode.com"
+            class="text-sky-600 dark:text-sky-400 font-semibold hover:underline"
+          >
+            support@maukode.com
+          </a>
+        </Card>
+        <Card title="Open Source & Community" icon="github">
+          For questions or contributions related to our open-source libraries,
+          the best place is GitHub.
+          <br /><br />
+          <a
+            href="https://github.com/maukode"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sky-600 dark:text-sky-400 font-semibold hover:underline"
+          >
+            View GitHub Profile
+          </a>
+        </Card>
+      </CardGrid>
+    </div>
+
+    <div class="mt-16 text-center">
+      <h3
+        class="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100"
+      >
+        Our Office
+      </h3>
+      <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-400">
+        While we are a globally distributed team, our main operations are based
+        in:
+        <br />
+        <span class="font-semibold">West Jakarta, Jakarta, Indonesia</span>
+      </p>
+      <p class="mt-2 text-base text-slate-500 dark:text-slate-400">
+        We typically respond to all inquiries within 1-2 business days.
+      </p>
+    </div>
+  </div>
+</StarlightPage>
