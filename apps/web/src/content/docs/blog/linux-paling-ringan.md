@@ -10,6 +10,8 @@ Linux Paling Ringan: Optimalkan Performa Komputer Anda
 Bagi pengguna komputer, kinerja adalah hal utama.  Komputer yang lambat bisa membuat frustasi dan menghambat produktivitas.  Jika Anda mencari sistem operasi yang ringan dan cepat, Linux adalah pilihan yang tepat.  
 <!-- excerpt -->
 
+> Terbaru! AI Chat untuk produktivitas dari maukode: [MauKode AI](https://ai.maukode.com)
+
 <!-- ![Linux PC](./linux.jpg) -->
 
 Ada banyak distribusi Linux yang dirancang khusus untuk performa tinggi, dan dalam artikel ini, kita akan membahas beberapa distribusi Linux paling ringan yang dapat Anda coba.

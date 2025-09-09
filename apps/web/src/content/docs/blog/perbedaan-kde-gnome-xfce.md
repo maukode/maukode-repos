@@ -14,6 +14,8 @@ Bagi pengguna Linux, memilih lingkungan desktop yang tepat bisa menjadi hal yang
 
 <!-- excerpt -->
 
+> Terbaru! AI Chat untuk produktivitas dari maukode: [MauKode AI](https://ai.maukode.com)
+
 ### KDE: Fitur Kaya dan Personal  
 
 KDE, singkatan dari *K Desktop Environment*, terkenal dengan antarmuka yang indah dan fitur yang kaya. KDE menawarkan banyak pilihan penyesuaian, memungkinkan Anda mengubah tampilan dan nuansa desktop sesuai selera. Beberapa fitur utama KDE:

@@ -10,6 +10,9 @@ Linux Distro Turunan Ubuntu: Pilihan Alternatif yang Lebih Bertenaga
 
 Ubuntu, sistem operasi Linux yang populer dan ramah pengguna, telah menjadi dasar bagi banyak distro lain. 
 <!-- excerpt -->
+
+> Terbaru! AI Chat untuk produktivitas dari maukode: [MauKode AI](https://ai.maukode.com)
+
 Distro turunan Ubuntu, atau *Ubuntu-based distros*, menawarkan berbagai fitur dan keunggulan, memberikan pilihan yang lebih luas bagi pengguna Linux. 
 
 **Mengapa Memilih Distro Turunan Ubuntu?**

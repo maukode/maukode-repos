@@ -12,6 +12,8 @@ Bagi para penggemar Linux yang haus akan fleksibilitas dan kontrol penuh, [Arch 
 <!-- excerpt -->
 Namun, proses instalasi Arch Linux yang rumit terkadang menjadi penghalang bagi pengguna pemula. Tenang, masih ada banyak opsi menarik lainnya: distro Linux turunan Arch!
 
+> Terbaru! AI Chat untuk produktivitas dari maukode: [MauKode AI](https://ai.maukode.com)
+
 Distro turunan Arch, dikenal dengan sebutan Arch-based, menawarkan pengalaman Arch Linux yang ramah pengguna. 
 
 > Baca juga: [Distro linux paling ringan](https://maukode.com/blog/linux-paling-ringan)
